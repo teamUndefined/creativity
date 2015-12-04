@@ -1,0 +1,24 @@
+{
+    "name": "Creativity",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "bole": "2.0.0",
+        "body-parser": "1.5.2",
+        "errorhandler": "1.1.1",
+        "express": "4.8.0",
+        "express-session": "*",
+        "jade": "1.9.1",
+        "socket.io": "*",
+        "connect-mongo": "*",
+        "cookie-parser": "*",
+        "mongodb": "*",
+        "consolidate": "*",
+        "ejs": "*",
+        "morgan": "1.2.2",
+        "multer": "0.1.3",
+        "request": "*"
+    }
+}
