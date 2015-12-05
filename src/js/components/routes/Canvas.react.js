@@ -16,7 +16,7 @@ var Canvas = React.createClass({
 			sketch.redraw();
 		});
 
-		this.props.socket.on('update_canvas', function(action) {
+		this.props.socket.on('clear_canvas', function(action) {
 			// get scketch and redraw
 			var sketch = $("#canvas").sketch();
 			sketch.actions = [];
