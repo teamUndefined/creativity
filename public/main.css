@@ -280,6 +280,8 @@ body {
 
 .app-container {
   position: relative; }
+  .app-container .mdl-grid {
+    padding: 0 !important; }
   .app-container .logo {
     margin: 0 auto;
     display: block;
@@ -294,8 +296,8 @@ body {
     height: 250px;
     background-color: #00bcd4;
     z-index: -1; }
-  .app-container .content-container .mdl-grid {
-    padding: 0; }
-  .app-container .content-container .chat-container {
-    margin: 0;
-    border-right: 1px solid #cccccc; }
+  .app-container .content-container {
+    margin: 0 8px !important; }
+    .app-container .content-container .chat-container {
+      margin: 0;
+      border-right: 1px solid #cccccc; }
