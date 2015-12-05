@@ -1,5 +1,10 @@
 .canvas-wrapper {
-  width: 100%; }
+  width: 100%;
+  position: relative; }
+  .canvas-wrapper .clear-button {
+    position: absolute;
+    right: 15px;
+    bottom: 15px; }
   .canvas-wrapper canvas {
     display: inline-block;
     border: 1px solid #ccc; }
