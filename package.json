@@ -26,7 +26,10 @@
     "react-dom": "^0.14.2",
     "react-router": "latest",
     "socket.io": "*",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "passport-facebook": "*",
+    "passport": "*",
+    "cookie-parser": "*"
   },
   "devDependencies": {
     "babelify": "6.4.0",

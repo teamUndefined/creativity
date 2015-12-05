@@ -28,7 +28,7 @@ config.events = {
     server_stopped_typing: {
         path: "chat/controller.js"
     },
-    server_disconnect: {
+    disconnect: {
         path: "chat/controller.js"
     },
     server_update_canvas: {
@@ -41,5 +41,32 @@ config.events = {
 
 config.operations = {
     apiKey: "/@",
-    apis: {}
+    apis: {
+        // special facebook login API operations
+        facebookLogin: {
+            url: "/auth/facebook",
+            method: "get",
+            path: "login/controller.js",
+            access: {
+                roles: ["visitator"]
+            }
+        },
+        facebookCallback: {
+            url: "/auth/facebook/callback",
+            method: "get",
+            path: "login/controller.js",
+            access: {
+                roles: ["visitator"]
+            }
+        },
+        // app operations
+        logout: {
+            url: "/logout",
+            method: "post",
+            path: "login/controller.js",
+            access: {
+                roles: ["user"]
+            }
+        }
+    }
 };

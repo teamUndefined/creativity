@@ -17,6 +17,10 @@ var bole = require('bole');
 bole.output({level: 'debug', stream: process.stdout});
 var log = bole('server');
 
+// cookies
+var cookieParser = require('cookie-parser');
+app.use(cookieParser("ZipH3rS7udYos$uGeCoY"));
+
 // all environments
 app.set('views', __dirname);
 app.engine('jade', engines.jade);

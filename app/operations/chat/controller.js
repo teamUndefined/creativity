@@ -33,7 +33,7 @@ exports.server_stopped_typing = function (args, socket, s) {
     sockets.emit("has_stopped_typing", socket.id);
 };
 
-exports.server_disconnect = function (args, socket, s) {
+exports.disconnect = function (args, socket, s) {
 
     // get room path
     var host = socket.request.headers.host;
