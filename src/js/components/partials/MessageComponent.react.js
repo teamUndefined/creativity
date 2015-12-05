@@ -44,8 +44,7 @@ var MessageComponent = React.createClass({
 			} else if (item.type === "message") {
 				return (
 					<div key={index} className="messageWrapper">
-						<div className="emitter" style={{backgroundImage: "url(/imgs/" + item.emitter + ".jpg)"}}></div>
-						<div className="username">{item.emitter}</div>
+						<div className="emitter" style={{backgroundImage: "url(/res/" + item.emitter + ".jpg)"}}></div>
 						<div className="from-them">
 							<p>{item.message}</p>
 						</div>
