@@ -78,8 +78,8 @@ var Chat = React.createClass({
 		// empty textarea
 		textarea.value = "";
 		// emit message to server(others)
-		self.props.socket.emit("stopped_typing");
-		self.props.socket.emit("message", message);
+		self.props.socket.emit("server_stopped_typing");
+		self.props.socket.emit("server_message", message);
 		self.setState({
 			newMessage: {
 				type: "myMessage",
@@ -94,13 +94,13 @@ var Chat = React.createClass({
 			self.sendMessage(e.target);
 		} else {
 			if (self.state.isTyping === false) {
-				self.props.socket.emit("typing");
+				self.props.socket.emit("server_typing");
 			}
 			clearTimeout(self.state.typingWait);
 			self.setState({
 				typingWait: (function (self) {
 					return setTimeout(function () {
-						self.props.socket.emit("stopped_typing");
+						self.props.socket.emit("server_stopped_typing");
 					}, 3000);
 				})(self),
 				newMessage: {}

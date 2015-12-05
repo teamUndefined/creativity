@@ -19,20 +19,23 @@ config.routes = {
 };
 
 config.events = {
-    message: {
+    server_message: {
         path: "chat/controller.js"
     },
-    typing: {
+    server_typing: {
         path: "chat/controller.js"
     },
-    stopped_typing: {
+    server_stopped_typing: {
         path: "chat/controller.js"
     },
-    disconnect: {
+    server_disconnect: {
         path: "chat/controller.js"
     },
-    update_canvas: {
+    server_update_canvas: {
         path: "game/controller.js"
+    },
+    server_clear_canvas: {
+        path: "game/controller.js"  
     }
 };
 
