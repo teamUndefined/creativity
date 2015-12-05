@@ -1,4 +1,4 @@
-exports.message = function (args, socket, s) {
+exports.server_message = function (args, socket, s) {
     // get room
     var host = socket.request.headers.host;
     var path = socket.request.headers.referer;
@@ -11,7 +11,7 @@ exports.message = function (args, socket, s) {
     });
 };
 
-exports.typing = function (args, socket, s) {
+exports.server_typing = function (args, socket, s) {
     // get room
     var host = socket.request.headers.host;
     var path = socket.request.headers.referer;
@@ -22,7 +22,7 @@ exports.typing = function (args, socket, s) {
     sockets.emit("is_typing", socket.id);
 };
 
-exports.stopped_typing = function (args, socket, s) {
+exports.server_stopped_typing = function (args, socket, s) {
     // get room
     var host = socket.request.headers.host;
     var path = socket.request.headers.referer;
@@ -33,7 +33,7 @@ exports.stopped_typing = function (args, socket, s) {
     sockets.emit("has_stopped_typing", socket.id);
 };
 
-exports.disconnect = function (args, socket, s) {
+exports.server_disconnect = function (args, socket, s) {
 
     // get room path
     var host = socket.request.headers.host;
