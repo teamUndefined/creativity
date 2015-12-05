@@ -3,6 +3,8 @@ import React from 'react';
 var Canvas = React.createClass({
 	componentDidMount() {
 
+		var self = this;
+
 		this.props.socket.on('new_canvas', function(newCanvas) {
 			var ctx = $('#canvas')[0].getContext('2d');
 
@@ -14,7 +16,7 @@ var Canvas = React.createClass({
 		$('.canvas-wrapper canvas').on('mouseup touchmove mousemove touchend touchcancel', function() {
 			var that = $(this)[0];
 
-			this.props.socket.emit('update_canvas', that);
+			self.props.socket.emit('update_canvas', that);
 		});
 	},
 	render() {
