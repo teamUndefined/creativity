@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-	Paper
+	Paper,
+	TextField
 } from 'material-ui';
 
 import MessageComponent from './MessageComponent.react';
@@ -17,9 +18,8 @@ var Chat = React.createClass({
 	},
 	componentDidMount() {
 		var self = this;
-		self.socket = io();
 
-		self.socket.on("new_client", function (client) {
+		self.props.socket.on("new_client", function (client) {
 			self.setState({
 				newMessage: {
 					type: "info",
@@ -28,7 +28,7 @@ var Chat = React.createClass({
 			});
 		});
 
-		self.socket.on("client_left", function (client) {
+		self.props.socket.on("client_left", function (client) {
 		    self.setState({
 				newMessage: {
 					type: "info",
@@ -37,14 +37,14 @@ var Chat = React.createClass({
 			});
 		});
 
-		self.socket.on("total_clients", function (clients) {
+		self.props.socket.on("total_clients", function (clients) {
 			self.setState({
 				clients: clients,
 				newMessage: {}
 			});
 		});
 
-		self.socket.on("new_message", function (data) {
+		self.props.socket.on("new_message", function (data) {
 			self.setState({
 				newMessage: {
 					type: "message",
@@ -54,14 +54,14 @@ var Chat = React.createClass({
 			});
 		});
 
-		self.socket.on("is_typing", function () {
+		self.props.socket.on("is_typing", function () {
 			self.setState({
 				isTyping: true,
 				newMessage: {}
 			})
 		});
 
-		self.socket.on("has_stopped_typing", function () {
+		self.props.socket.on("has_stopped_typing", function () {
 			self.setState({
 				isTyping: false,
 				newMessage: {}
@@ -78,8 +78,8 @@ var Chat = React.createClass({
 		// empty textarea
 		textarea.value = "";
 		// emit message to server(others)
-		self.socket.emit("stopped_typing");
-		self.socket.emit("message", message);
+		self.props.socket.emit("stopped_typing");
+		self.props.socket.emit("message", message);
 		self.setState({
 			newMessage: {
 				type: "myMessage",
@@ -94,13 +94,13 @@ var Chat = React.createClass({
 			self.sendMessage(e.target);
 		} else {
 			if (self.state.isTyping === false) {
-				self.socket.emit("typing");
+				self.props.socket.emit("typing");
 			}
 			clearTimeout(self.state.typingWait);
 			self.setState({
 				typingWait: (function (self) {
 					return setTimeout(function () {
-						self.socket.emit("stopped_typing");
+						self.props.socket.emit("stopped_typing");
 					}, 3000);
 				})(self),
 				newMessage: {}
@@ -111,11 +111,11 @@ var Chat = React.createClass({
 		var self = this;
 		return (
 			<div>
-				<div className="well message-container col-sm-8">
+				<div className="message-container col-sm-8">
 					<MessageComponent message={self.state.newMessage} />
 				</div>
 				{ self.state.isTyping ? <i className="info isTyping">Someone is typing...</i> : null }
-				<textarea className="message-textarea" placeholder="Type to chat..." onKeyDown={self.isTyping}></textarea>
+				<TextField hintText="Type to chat" multiLine={true} rows={1} maxRows={3} onKeyDown={self.isTyping} />
 			</div>
 		);
 	}
