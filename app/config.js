@@ -13,15 +13,7 @@ config.mongodb = {
 
 config.routes = {
     home: {
-        reg: "^/*$",
-        path: "routes/views/index.html"
-    },
-    shit: {
-        reg: "^/shit$",
-        path: "routes/views/index.html"
-    },
-    game: {
-        reg: "^/game[^/]+/*$",
+        reg: "^(?!/@).+$",
         path: "routes/views/index.html"
     }
 };
