@@ -35,7 +35,13 @@ body {
 	}
 
 	.content-container {
+
+		.mdl-grid {
+			padding: 0;
+		}
+
 		.chat-container {
+			margin: 0;
 			border-right: 1px solid #cccccc;
 		}
 	}

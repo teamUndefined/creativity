@@ -115,7 +115,7 @@ var Chat = React.createClass({
 					<MessageComponent message={self.state.newMessage} />
 				</div>
 				{ self.state.isTyping ? <i className="info isTyping">Someone is typing...</i> : null }
-				<TextField hintText="Type to chat" multiLine={true} rows={1} maxRows={3} onKeyDown={self.isTyping} />
+				<TextField className="message-textarea" hintText="Type to chat" multiLine={true} maxRows={3} onKeyDown={self.isTyping} fullWidth={true} />
 			</div>
 		);
 	}
