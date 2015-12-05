@@ -22,6 +22,14 @@ function handleEvent (event, args, config, socket) {
     event_cache[event](args, socket, s);
 }
 
+function emitToRoom (event, emitterId, args) {
+    // emit to all clients
+    Object.keys(this.clients).forEach(function (client) {
+        if (client === emitterId) return;
+        s.io.to(client).emit(event, args);
+    });
+}
+
 module.exports = function (core) {
     var io = core.s.io;
     s = core.s;
@@ -31,16 +39,41 @@ module.exports = function (core) {
         var host = socket.request.headers.host;
         var path = socket.request.headers.referer;
 
-        // build sockets object
         path = path.slice(path.indexOf(host) + host.length);
-        for (var route in config.routes) {
-            var reg = new RegExp(config.routes[route].reg);
-            if (path.match(reg)) {
-                if (!s.sockets[route]) {
-                    s.sockets[route] = [];
-                }
-                s.sockets[route].push(socket.id);
+        var reg = new RegExp("^/game/[^/]+/*$");
+
+        // create room or join room
+        if (path && path.match(reg)) {
+            
+            // create room if it does not exist
+            if (!s.sockets[path]) {
+                s.sockets[path] = {
+                    status: "open",
+                    path: path
+                };
             }
+
+            // init client
+            s.sockets[path].clients = s.sockets[path].clients || {};
+            s.sockets[path].clients[socket.id] = {
+                id: socket.id,
+                username: "default_username",
+                emit: function (event, args) {
+                    s.io.to(socket.id).emit(event, args);
+                }
+            };
+
+            s.sockets[path].emit = emitToRoom;
+
+            // get all connected clients
+            clients = [];
+            Object.keys(s.sockets[path].clients).forEach(function (c) {
+                clients.push(s.sockets[path].clients[c].username);
+            });
+
+            // emit events
+            s.sockets[path].emit("total_clients", null, clients);
+            s.sockets[path].emit("new_client", socket.id, s.sockets[path].clients[socket.id].username);
         }
 
         // listen for events

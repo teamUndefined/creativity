@@ -18,6 +18,21 @@ config.routes = {
     }
 };
 
+config.events = {
+    message: {
+        path: "chat/controller.js"
+    },
+    typing: {
+        path: "chat/controller.js"
+    },
+    stopped_typing: {
+        path: "chat/controller.js"
+    },
+    disconnect: {
+        path: "chat/controller.js"
+    }
+},
+
 config.operations = {
     apiKey: "/@",
     apis: {}
