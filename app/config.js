@@ -12,8 +12,16 @@ config.mongodb = {
 };
 
 config.routes = {
-    index: {
-        reg: "^(?!/@/).+$",
+    home: {
+        reg: "^/*$",
+        path: "routes/views/index.html"
+    },
+    shit: {
+        reg: "^/shit$",
+        path: "routes/views/index.html"
+    },
+    game: {
+        reg: "^/game[^/]+/*$",
         path: "routes/views/index.html"
     }
 };

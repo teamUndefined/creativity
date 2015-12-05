@@ -6,8 +6,6 @@ import {
 	Col
 } from 'react-bootstrap';
 
-import Header from './Header.react';
-
 var Home = React.createClass({
 	componentDidMount() {
 		// initialize slick slider
@@ -20,28 +18,22 @@ var Home = React.createClass({
 	},
 	render() {
 		return (
-			<Grid fluid={true}>
-				<Row>
-					{ this.props.children }
-					<Header headerStyle="inverted" />
-					<div>
-						<div className="homepage-slick">
-							<div className="homepage-slide" style={{backgroundImage: "url(https://www.metaslider.com/wp-content/uploads/2014/11/mountains1.jpg)"}}>
-								
-							</div>
-							<div className="homepage-slide" style={{backgroundImage: "url(https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/15/153/153608/rlln0we921wijomh3wttle1szl9mao25oyw4nootsqohrva7z9jchrv1d0dfso35-o.jpg?1406907110)"}}>
-								
-							</div>
-							<div className="homepage-slide" style={{backgroundImage: "url(http://mycargear.com/wp-content/uploads/Hipster-Bike-Wallpaper-011.jpg)"}}>
-							
-							</div>
-						</div>
-						<div>
-
-						</div>
+			<div>
+				<div className="homepage-slick">
+					<div className="homepage-slide" style={{backgroundImage: "url(https://www.metaslider.com/wp-content/uploads/2014/11/mountains1.jpg)"}}>
+						
 					</div>
-				</Row>
-			</Grid>
+					<div className="homepage-slide" style={{backgroundImage: "url(https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/15/153/153608/rlln0we921wijomh3wttle1szl9mao25oyw4nootsqohrva7z9jchrv1d0dfso35-o.jpg?1406907110)"}}>
+						
+					</div>
+					<div className="homepage-slide" style={{backgroundImage: "url(http://mycargear.com/wp-content/uploads/Hipster-Bike-Wallpaper-011.jpg)"}}>
+					
+					</div>
+				</div>
+				<div>
+
+				</div>
+			</div>
 		);
 	}
 });

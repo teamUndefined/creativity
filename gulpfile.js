@@ -35,6 +35,7 @@ gulp.task('watch', function() {
 
 gulp.task('styles', function() {
     return gulp.src('./src/scss/main.scss')
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public'));
 });
 
