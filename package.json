@@ -2,7 +2,7 @@
   "name": "Creativity",
   "version": "0.0.1",
   "scripts": {
-     "start": "node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "1.5.2",
@@ -17,6 +17,7 @@
     "history": "^1.13.0",
     "jade": "1.9.1",
     "jquery": "^2.1.4",
+    "material-ui": "^0.13.4",
     "mongodb": "*",
     "morgan": "1.2.2",
     "multer": "0.1.3",
@@ -32,6 +33,8 @@
     "browserify": "^12.0.1",
     "glob": "^5.0.15",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "keymirror": "^0.1.1",

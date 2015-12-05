@@ -11,21 +11,33 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var assign = require('lodash.assign');
+var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 
 // add custom browserify options here
 var customOpts = {
-    entries: ['./src/index.js'],
+    entries: ['./src/js/index.js'],
     //extensions: ['.js'],
     debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts)); 
+var b = watchify(browserify(opts));
 
 // add transformations here
 b.transform(babelify);
 //b.transform(reactify);
 
-gulp.task('default', ['js']);
+gulp.task('default', ['js', 'styles', 'watch']);
+
+gulp.task('watch', function() {
+    return gulp.watch('./src/scss/**/*.scss', ['styles']);
+});
+
+gulp.task('styles', function() {
+    return gulp.src('./src/scss/main.scss')
+        .pipe(gulp.dest('./public'));
+});
+
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 b.on('update', bundle); // on any dep update, runs the bundler
 b.on('log', gutil.log); // output build logs to terminal
@@ -43,3 +55,4 @@ function bundle() {
         //.pipe(sourcemaps.write('./public')) // writes .map file
         .pipe(gulp.dest('./public'));
 }
+
