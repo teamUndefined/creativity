@@ -1,5 +1,6 @@
 import React from 'react';
 import Canvas from './Canvas.react.js';
+import Chat from '../partials/Chat.react';
 
 import {
 	Paper
@@ -15,8 +16,8 @@ var Game = React.createClass({
 				<div className="mdl-cell mdl-cell--1-col mdl-cell--0-col-phone"></div>
 				<Paper zDepth={1} className="content-container mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
 					<div className="mdl-grid">
-						<div className="mdl-cell mdl-cell--4-col mdl-cell--0-col-phone">
-							Hello
+						<div className="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone chat-container">
+							<Chat />
 						</div>
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
 							<Canvas />

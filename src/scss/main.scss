@@ -1,5 +1,9 @@
 @import 'components/canvas';
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -29,6 +33,8 @@ body {
 	}
 
 	.content-container {
-		
+		.chat-container {
+			border-right: 1px solid #cccccc;
+		}
 	}
 }
