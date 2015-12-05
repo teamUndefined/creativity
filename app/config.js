@@ -13,7 +13,7 @@ config.mongodb = {
 
 config.routes = {
     index: {
-        reg: "^/*$",
+        reg: "^(?!/@/).+$",
         path: "routes/views/index.html"
     }
 };
