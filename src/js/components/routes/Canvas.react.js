@@ -24,8 +24,9 @@ var Canvas = React.createClass({
 			var image = $(this)[0].toDataURL();
 
 			// console.log('IMAGE', image);
-
-			self.props.socket.emit('update_canvas', image);
+			setTimeout(function() {
+				self.props.socket.emit('update_canvas', image);
+			}, 20);
 		});
 	},
 	render() {
