@@ -4,6 +4,8 @@ import {
 	Paper
 } from 'material-ui';
 
+import MessageComponent from './MessageComponent.react';
+
 var Chat = React.createClass({
 	getInitialState() {
 		return {
