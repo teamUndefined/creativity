@@ -20,13 +20,19 @@ var Canvas = React.createClass({
 
 		$('#canvas').sketch();
 
+		// limit canvas update to 24 fps
+		var canCall = true;
+		setInterval(function(){
+            canCall = true;
+        }, 42);
+
 		$('.canvas-wrapper canvas').on('mouseup touchmove mousemove touchend touchcancel', function() {
 			var image = $(this)[0].toDataURL();
 
-			// console.log('IMAGE', image);
-			setTimeout(function() {
+			if (canCall) {
 				self.props.socket.emit('update_canvas', image);
-			}, 20);
+				canCall = false;
+			}
 		});
 	},
 	render() {
