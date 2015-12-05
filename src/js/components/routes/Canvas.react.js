@@ -7,29 +7,37 @@ var Canvas = React.createClass({
 
 		this.props.socket.on('new_canvas', function(newCanvas) {
 			var ctx = $('#canvas')[0].getContext('2d');
+			console.log('RESPONSE', newCanvas);
 
-			ctx.drawImage(newCanvas, 0, 0);
+			// ctx.drawImage(newCanvas, 0, 0);
+
+			var image = new Image();
+			image.onload = function() {
+			    ctx.drawImage(image, 0, 0);
+			};
+			image.src = newCanvas;
 		});
 
 		$('#canvas').sketch();
 
 		$('.canvas-wrapper canvas').on('mouseup touchmove mousemove touchend touchcancel', function() {
-			var that = $(this)[0];
+			var image = $(this)[0].toDataURL();
 
-			self.props.socket.emit('update_canvas', that);
+			// console.log('IMAGE', image);
+
+			self.props.socket.emit('update_canvas', image);
 		});
 	},
 	render() {
 		return (
 			<div className="canvas-wrapper">
-				<canvas id="canvas" width="100" height="300"></canvas>
+				<canvas id="canvas" width="450" height="300"></canvas>
 				<div className="tools">
-					<a href="#canvas" data-color="#000000" title="Black"><img src="img/black_icon.png" alt="Black"/></a>
-					<a href="#canvas" data-color="#ff0000" title="Red"><img src="img/red_icon.png" alt="Red"/></a>
-					<a href="#canvas" data-color="#00ff00" title="Green"><img src="img/green_icon.png" alt="Green"/></a>
-					<a href="#canvas" data-color="#0000ff" title="Blue"><img src="img/blue_icon.png" alt="Blue"/></a>
-					<a href="#canvas" data-color="#ffff00" title="Yellow"><img src="img/yellow_icon.png" alt="Yellow"/></a>
-					<a href="#canvas" data-color="#00ffff" title="Cyan"><img src="img/cyan_icon.png" alt="Cyan"/></a>
+					<a href="#canvas" className="color-pill" data-color="#1abc9c" title="Black"><span style={{backgroundColor: "#1abc9c"}}></span></a>
+					<a href="#canvas" className="color-pill" data-color="#2980b9" title="Black"><span style={{backgroundColor: "#2980b9"}}></span></a>
+					<a href="#canvas" className="color-pill" data-color="#8e44ad" title="Black"><span style={{backgroundColor: "#8e44ad"}}></span></a>
+					<a href="#canvas" className="color-pill" data-color="#c0392b" title="Black"><span style={{backgroundColor: "#c0392b"}}></span></a>
+					<a href="#canvas" className="color-pill" data-color="#f1c40f" title="Black"><span style={{backgroundColor: "#f1c40f"}}></span></a>
 				</div>
 			</div>
 		)

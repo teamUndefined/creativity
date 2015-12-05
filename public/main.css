@@ -2,8 +2,17 @@
   width: 100%; }
   .canvas-wrapper canvas {
     display: inline-block;
-    display: inline-block;
     border: 1px solid #ccc; }
+  .canvas-wrapper .tools .color-pill {
+    display: inline-block;
+    margin: 5px 0 5px 10px; }
+    .canvas-wrapper .tools .color-pill:first-child {
+      margin-right: 0; }
+    .canvas-wrapper .tools .color-pill span {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%; }
 
 .message-container {
   height: 400px;
