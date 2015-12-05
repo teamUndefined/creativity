@@ -72,6 +72,10 @@ body {
 .app-container {
 	position: relative;
 
+	.mdl-grid {
+		padding: 0 !important;
+	}
+
 	.logo {
 		margin: 0 auto;
 		display: block;
@@ -91,10 +95,7 @@ body {
 	}
 
 	.content-container {
-
-		.mdl-grid {
-			padding: 0;
-		}
+		margin: 0 8px !important;
 
 		.chat-container {
 			margin: 0;
