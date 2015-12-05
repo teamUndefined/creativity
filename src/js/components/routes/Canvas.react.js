@@ -5,17 +5,11 @@ var Canvas = React.createClass({
 
 		var self = this;
 
-		this.props.socket.on('new_canvas', function(newCanvas) {
-			var ctx = $('#canvas')[0].getContext('2d');
-			console.log('RESPONSE', newCanvas);
-
-			// ctx.drawImage(newCanvas, 0, 0);
-
-			var image = new Image();
-			image.onload = function() {
-			    ctx.drawImage(image, 0, 0);
-			};
-			image.src = newCanvas;
+		this.props.socket.on('new_canvas', function(action) {
+			// get scketch and redraw
+			var sketch = $("#canvas").sketch();
+			sketch.actions.push(action);
+			sketch.redraw();
 		});
 
 		$('#canvas').sketch();
@@ -27,10 +21,10 @@ var Canvas = React.createClass({
         }, 42);
 
 		$('.canvas-wrapper canvas').on('mouseup touchmove mousemove touchend touchcancel', function() {
-			var image = $(this)[0].toDataURL();
+			var action = $(this).sketch().action;
 
-			if (canCall) {
-				self.props.socket.emit('update_canvas', image);
+			if (canCall && action) {
+				self.props.socket.emit('update_canvas', action);
 				canCall = false;
 			}
 		});
