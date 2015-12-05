@@ -1,14 +1,25 @@
 import React from 'react';
 
+import {
+	FloatingActionButton,
+	ActionGrade
+} from 'material-ui';
+
 var Canvas = React.createClass({
 	componentDidMount() {
-
 		var self = this;
 
-		this.props.socket.on('new_canvas', function(action) {
+		this.props.socket.on('update_canvas', function(action) {
 			// get scketch and redraw
 			var sketch = $("#canvas").sketch();
 			sketch.actions.push(action);
+			sketch.redraw();
+		});
+
+		this.props.socket.on('update_canvas', function(action) {
+			// get scketch and redraw
+			var sketch = $("#canvas").sketch();
+			sketch.actions = [];
 			sketch.redraw();
 		});
 
@@ -24,10 +35,18 @@ var Canvas = React.createClass({
 			var action = $(this).sketch().action;
 
 			if (canCall && action) {
-				self.props.socket.emit('update_canvas', action);
+				self.props.socket.emit('server_update_canvas', action);
 				canCall = false;
 			}
 		});
+	},
+	clearCanvas() {
+		var self = this;
+		var sketch = $("#canvas").sketch();
+
+		sketch.actions = [];
+		sketch.redraw();
+		self.props.socket.emit('server_clear_canvas');
 	},
 	render() {
 		return (
@@ -39,6 +58,10 @@ var Canvas = React.createClass({
 					<a href="#canvas" className="color-pill" data-color="#8e44ad" title="Black"><span style={{backgroundColor: "#8e44ad"}}></span></a>
 					<a href="#canvas" className="color-pill" data-color="#c0392b" title="Black"><span style={{backgroundColor: "#c0392b"}}></span></a>
 					<a href="#canvas" className="color-pill" data-color="#f1c40f" title="Black"><span style={{backgroundColor: "#f1c40f"}}></span></a>
+					<a href="#canvas" className="color-pill" data-color="#ffffff" title="Black"><span style={{backgroundColor: "#ffffff", border: "1px solid #aaa"}}></span></a>
+					<FloatingActionButton  onClick={this.clearCanvas} iconClassName="muidocs-icon-action-grade" mini={true}>
+						
+					</FloatingActionButton>
 				</div>
 			</div>
 		)
