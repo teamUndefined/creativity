@@ -30,8 +30,11 @@ config.events = {
     },
     disconnect: {
         path: "chat/controller.js"
+    },
+    update_canvas: {
+        path: "game/controller.js"
     }
-},
+};
 
 config.operations = {
     apiKey: "/@",
