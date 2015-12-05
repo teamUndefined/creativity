@@ -1,4 +1,5 @@
 import React from 'react';
+import Canvas from './Canvas.react.js';
 
 import {
 	Paper
@@ -18,7 +19,7 @@ var Game = React.createClass({
 							Hello
 						</div>
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
-							World
+							<Canvas />
 						</div>
 					</div>
 				</Paper>

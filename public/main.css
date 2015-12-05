@@ -1,3 +1,12 @@
+.canvas-wrapper {
+  height: 400px;
+  width: 100%; }
+  .canvas-wrapper canvas {
+    display: inline-block;
+    display: inline-block;
+    border: 1px solid #ccc;
+    width: 100%; }
+
 body {
   padding: 0;
   margin: 0; }
