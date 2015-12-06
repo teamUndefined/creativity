@@ -1,5 +1,6 @@
 var mongo = require("../../lib/mongo");
 var ObjectId = mongo.ObjectID;
+var cookieParser = require('cookie');
 
 exports.createLobby = function (source) {
 
@@ -11,7 +12,8 @@ exports.createLobby = function (source) {
         status: "waiting",
         type: "lobby",
         players: {},
-        clients: {}
+        clients: {},
+        strangers: false
     };
 
     source.res.setHeader("Location", "/lobby/" + lobbyId);
@@ -127,5 +129,64 @@ exports.server_match_lobby = function (args, socket, s) {
 
     } else {
         s.matchQueue.push(path);
+    }
+};
+
+exports.server_join_lobby = function (args, socket, s) {
+
+    // parse login data (if exists)
+    var loginInfo = null;
+    if (cookie && cookie.login) {
+        if (cookie.login.indexOf("{") !== -1 && cookie.login.indexOf("}") !== -1) {
+            var loginString = cookie.login.slice(cookie.login.indexOf("{"), cookie.login.indexOf("}") + 1);
+
+            try {
+                loginInfo = JSON.parse(loginString);
+            } catch (e) {
+                console.error(e, "faild to parse login cookie");
+                socket.emit('err');
+                return;
+            }
+        }
+    }
+
+    if (!loginInfo) {
+        console.error("no user data");
+        socket.emit('err');
+        return;
+    }
+
+    // find rooms
+    var match = null;
+    Object.keys(s.sockets).forEach(function (c) {
+        var room = s.sockets[c];
+        if (room.type === "lobby" && room.status !== "full") {
+            match = room;
+            return
+        }
+    });
+
+    if (match) {
+        socket.emit("lobby_found", match.path);
+    } else {
+        socket.emit("lobby_not_found");
+    }
+};
+
+exports.server_toggle_strangers = function (args, socket, s) {
+    // get room path
+    var host = socket.request.headers.host;
+    var path = socket.request.headers.referer;
+    path = path.slice(path.indexOf(host) + host.length);
+    var room = s.sockets[path];
+
+    if (!room) {
+        return;
+    }
+
+    if (!room.strangers) {
+        room.stragers = true;
+    } else {
+        room.strangers = false;
     }
 };

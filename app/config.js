@@ -42,6 +42,12 @@ config.events = {
     },
     server_match_lobby: {
         path: "lobby/controller.js"
+    },
+    server_join_lobby: {
+        path: "lobby/controller.js"
+    },
+    server_strangers_toggle: {
+        path: "lobby/controller.js"  
     }
 };
 
