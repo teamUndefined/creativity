@@ -1,6 +1,7 @@
 import events from 'events';
 import Dispatcher from '../dispatcher.js';
-import ActionConsts from '../constants/ActionConstants';
+import ActionConsts from '../constants/UserConstants';
+import cookieParser from 'cookieparser';
 
 var cartContent = {};
 var visibility = false;
@@ -11,14 +12,16 @@ function addToCart(product) {
 
 class UserStore extends events.EventEmitter {
 	isLoggedIn() {
-		
-		return total;
+		var cookie = cookieParser.JSONCookie('login');
+
+		return true;
 	}
 	getLoggedInUser() {
-		
+		console.log(cookieParser);
+		// var cookie = cookieParser.JSONCookie('login');
 	}
 	getRoomUsers() {
-		
+
 	}
 	emitChange() {
 		this.emit('change');
@@ -34,14 +37,8 @@ Dispatcher.register((payload) => {
 	var action = payload.action;
 
 	switch(action.actionType) {
-		case ActionConsts.ADD_TO_CART:
-			addToCart(action.product);
-			break;
-		case ActionConsts.REMOVE_FROM_CART:
-			removeFromCart(action.id);
-			break;
-		case ActionConsts.UPDATE_CART_VISIBILITY:
-			updateCartVisibility(action.visible);
+		case ActionConsts.IS_LOGGED_IN:
+			return isLoggedIn();
 			break;
 		default:
 			return true;

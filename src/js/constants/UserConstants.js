@@ -2,6 +2,8 @@ import keyMirror from 'keymirror';
 
 export default {
 	ACTIONS: keyMirror({
-		GET_ALL_AUCTIONS: null
+		IS_LOGGED_IN: null,
+		GET_LOGGED_IN_USER: null,
+		GET_ROOM_USERS: null
 	})
 }
