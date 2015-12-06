@@ -12,7 +12,6 @@ function addToCart(product) {
 
 class UserStore extends events.EventEmitter {
 	isLoggedIn() {
-		console.log(cookieParser);
 		var cookie,
 			loginInfo;
 		if (document.cookie) {
@@ -32,14 +31,14 @@ class UserStore extends events.EventEmitter {
       }
 
       if (loginInfo) {
+      	_loginInfo = loginInfo;
 			return true;
       }
 
       return false;
 	}
 	getLoggedInUser() {
-		console.log(cookieParser);
-		// var cookie = cookieParser.JSONCookie('login');
+		return _loginInfo;
 	}
 	getRoomUsers() {
 
@@ -60,6 +59,9 @@ Dispatcher.register((payload) => {
 	switch(action.actionType) {
 		case ActionConsts.IS_LOGGED_IN:
 			return isLoggedIn();
+			break;
+		case ActionsConsts.GET_LOGGED_IN_USER:
+			return getLoggedInUser();
 			break;
 		default:
 			return true;
