@@ -19,7 +19,10 @@ var Home = React.createClass({
 		});
 
 		this.props.socket.on("lobby_not_found", function() {
-
+			notie.alert(3, 'Sorry, We didn\'t fund any rooms!', 3);
+			this.setState({
+				search: false
+			});
 		});
 
 	},

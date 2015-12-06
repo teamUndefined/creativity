@@ -17,7 +17,8 @@ var Lobby = React.createClass({
 			players: [],
 			isReady: false,
 			allReady: false,
-			matching: false
+			matching: false,
+			strange: true
 		};
 	},
 	componentDidMount() {
@@ -38,6 +39,12 @@ var Lobby = React.createClass({
 		self.props.socket.on("match_made", function (gid) {
 			window.location = "/game/" + gid;
 		});
+
+		self.props.socket.on("strangers_value", function (bool) {
+			self.setState({
+				players: players
+			});
+		});
 	},
 	enableStrangers() {
 		this.props.socket.emit("server_strangers_toggle");
@@ -51,7 +58,7 @@ var Lobby = React.createClass({
 	startGame() {
 		this.props.socket.emit("server_match_lobby");
 		this.setState({
-			matching: true
+			strange: false
 		});
 	},
 	render() {
@@ -79,7 +86,7 @@ var Lobby = React.createClass({
 								}) }
 							</div>
 							<div className="pt-m">
-								<Checkbox name="public" value="public" label="Alow strangers" onClick={self.enableStrangers}/>
+								{ self.state.strange ? (<Checkbox className="asd" name="public" value="public" label="Alow strangers" onClick={self.enableStrangers} />) : null}
 								{ !self.state.isReady ? (<RaisedButton ref="readyBtn" label="Ready" secondary={true} onClick={self.setReady}/>) : null}
 								{ self.state.allReady ? (<RaisedButton ref="startBtn" label="Start" primary={true} onClick={self.startGame}/>) : null}
 								{ self.state.matching ? (<CircularProgress mode="indeterminate" size={0.5} />) : null}
