@@ -79,7 +79,6 @@ module.exports = function (core) {
 
         // create game
         if (path && path.match(gameReg)) {
-            console.log(s.sockets[gameReg]);
             if (!loginInfo) {
                 console.error(new Error ("No login info"));
                 socket.emit("err");
