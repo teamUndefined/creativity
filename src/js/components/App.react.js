@@ -17,7 +17,12 @@ var App = React.createClass({
 		};
 	},
 	componentDidMount() {
-		console.log('USER DETAILS', this.state.userDetails);
+		// Notie init
+		var alert_color_success_background = '#2ecc71';
+		var alert_color_warning_background = '#E3B771';
+		var alert_color_error_background = '#c0392b';
+		var alert_color_info_background = '#fafafa';
+		var alert_color_text = '#FFF';
 	},
 	render() {
 		var self = this;

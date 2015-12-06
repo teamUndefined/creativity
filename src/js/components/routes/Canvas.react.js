@@ -9,6 +9,12 @@ var Canvas = React.createClass({
 	componentDidMount() {
 		var self = this;
 
+		$('#canvas').attr('width', $('.canvas-wrapper').width());
+
+		$(window).resize(function() {
+			$('#canvas').attr('width', $('.canvas-wrapper').width());
+		});
+
 		this.props.socket.on('update_canvas', function(action) {
 			// get scketch and redraw
 			var sketch = $("#canvas").sketch();
@@ -51,7 +57,7 @@ var Canvas = React.createClass({
 	render() {
 		return (
 			<div className="canvas-wrapper">
-				<canvas id="canvas" width="450" height="300"></canvas>
+				<canvas id="canvas" width="450" height="400"></canvas>
 				<div className="tools">
 					<a href="#canvas" className="color-pill" data-color="#000000" title="Black"><span style={{backgroundColor: "#000000"}}></span></a>
 					<a href="#canvas" className="color-pill" data-color="#1abc9c" title="Green"><span style={{backgroundColor: "#1abc9c"}}></span></a>
