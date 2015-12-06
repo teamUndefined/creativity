@@ -17,7 +17,7 @@ var Lobby = React.createClass({
 							<Chat socket={this.props.socket} />
 						</div>
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
-							{/*<Canvas socket={this.state.socket} />*/}
+							<input type="text" value={this.props.params} />
 						</div>
 					</div>
 				</Paper>

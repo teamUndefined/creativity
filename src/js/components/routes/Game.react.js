@@ -11,7 +11,6 @@ var Game = React.createClass({
 	componentDidMount() {
 		this.props.socket.on('total_clients', function(clients) {
 			// get scketch and redraw
-			console.log('CLIENTS', clients);
 			UserStore.isLoggedIn();
 		});
 	},
@@ -21,6 +20,9 @@ var Game = React.createClass({
 				<div className="mdl-cell mdl-cell--1-col mdl-cell--0-col-phone"></div>
 				<Paper zDepth={1} className="content-container mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
 					<div className="mdl-grid">
+						<div className="mdl-cell mdl-cell--12-col team-container">
+							Hello
+						</div>
 						<div className="mdl-cell mdl-cell--4-col mdl-cell--12-col-phone chat-container">
 							<Chat socket={this.props.socket} />
 						</div>

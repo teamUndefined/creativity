@@ -78,27 +78,29 @@ body {
 	.mdl-grid {
 		padding: 0 !important;
 
-		.mdl-grid > .mdl-cell {
-			background-size: cover;
-		    background-position: center;
-		    background-image: url(http://www.thegoodshoppingguide.com/wp-content/uploads/2013/03/paint.jpg);
-		    position: relative;
-		    z-index: 10;
+		&.home {
+			.mdl-grid > .mdl-cell {
+				background-size: cover;
+			    background-position: center;
+			    background-image: url(http://www.thegoodshoppingguide.com/wp-content/uploads/2013/03/paint.jpg);
+			    position: relative;
+			    z-index: 10;
 
-		    &:after {
-		    	position: absolute;
-			    top: 0;
-			    right: 0;
-			    bottom: 0;
-			    left: 0;
-			    content: "";
-			    background-color: rgba(0,0,0,0.5);
-			    z-index: -1;
-		    }
+			    &:after {
+			    	position: absolute;
+				    top: 0;
+				    right: 0;
+				    bottom: 0;
+				    left: 0;
+				    content: "";
+				    background-color: rgba(0,0,0,0.5);
+				    z-index: -1;
+			    }
 
-		    &:first-child {
-		    	background-image: url(http://images.wisegeek.com/smears-of-paint-and-brush.jpg);
-		    }
+			    &:first-child {
+			    	background-image: url(http://images.wisegeek.com/smears-of-paint-and-brush.jpg);
+			    }
+			}
 		}
 	}
 
@@ -126,6 +128,12 @@ body {
 		.chat-container {
 			margin: 0;
 			border-right: 1px solid #cccccc;
+		}
+
+		.team-container {
+			width: 100%;
+			margin: 0;
+			border-bottom: 1px solid #cccccc;
 		}
 	}
 }

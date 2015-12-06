@@ -310,13 +310,13 @@ body {
   position: relative; }
   .app-container .mdl-grid {
     padding: 0 !important; }
-    .app-container .mdl-grid .mdl-grid > .mdl-cell {
+    .app-container .mdl-grid.home .mdl-grid > .mdl-cell {
       background-size: cover;
       background-position: center;
       background-image: url(http://www.thegoodshoppingguide.com/wp-content/uploads/2013/03/paint.jpg);
       position: relative;
       z-index: 10; }
-      .app-container .mdl-grid .mdl-grid > .mdl-cell:after {
+      .app-container .mdl-grid.home .mdl-grid > .mdl-cell:after {
         position: absolute;
         top: 0;
         right: 0;
@@ -325,7 +325,7 @@ body {
         content: "";
         background-color: rgba(0, 0, 0, 0.5);
         z-index: -1; }
-      .app-container .mdl-grid .mdl-grid > .mdl-cell:first-child {
+      .app-container .mdl-grid.home .mdl-grid > .mdl-cell:first-child {
         background-image: url(http://images.wisegeek.com/smears-of-paint-and-brush.jpg); }
   .app-container .logo {
     margin: 0 auto;
@@ -346,3 +346,7 @@ body {
     .app-container .content-container .chat-container {
       margin: 0;
       border-right: 1px solid #cccccc; }
+    .app-container .content-container .team-container {
+      width: 100%;
+      margin: 0;
+      border-bottom: 1px solid #cccccc; }
