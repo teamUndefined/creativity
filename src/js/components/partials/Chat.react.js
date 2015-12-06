@@ -108,6 +108,12 @@ var Chat = React.createClass({
 			});
 		}
 	},
+	shouldComponentUpdate(nextProps, nextState) {
+		if (Object.keys(nextState.newMessage).length)
+			if (nextState.newMessage === this.state.newMessage)
+				return false;
+		return true;
+	},
 	render() {
 		var self = this;
 		return (

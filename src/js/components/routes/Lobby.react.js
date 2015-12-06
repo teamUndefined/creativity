@@ -6,7 +6,8 @@ import {
 	Paper,
 	TextField,
 	Avatar,
-	RaisedButton
+	RaisedButton,
+	CircularProgress
 } from 'material-ui';
 
 var Lobby = React.createClass({
@@ -14,13 +15,13 @@ var Lobby = React.createClass({
 		return {
 			players: [],
 			isReady: false,
-			allReady: false
+			allReady: false,
+			matching: false
 		};
 	},
 	componentDidMount() {
 		var self = this;
 		self.props.socket.on("total_clients", function (players) {
-			console.log(players);
 			self.setState({
 				players: players
 			});
@@ -30,6 +31,9 @@ var Lobby = React.createClass({
 				allReady: true
 			})
 		});
+		self.props.socket.on("match_made", function (gid) {
+			window.location = "/game/" + gid;
+		});
 	},
 	setReady() {
 		this.setState({
@@ -38,7 +42,10 @@ var Lobby = React.createClass({
 		this.props.socket.emit("server_user_ready", this.props.userDetails.facebook_uid);
 	},
 	startGame() {
-
+		this.props.socket.emit("server_match_lobby");
+		this.setState({
+			matching: true
+		});
 	},
 	render() {
 		var self = this;
@@ -67,6 +74,7 @@ var Lobby = React.createClass({
 							<div className="pt-m">
 								{ !self.state.isReady ? (<RaisedButton ref="readyBtn" label="Ready" secondary={true} onClick={self.setReady}/>) : null}
 								{ self.state.allReady ? (<RaisedButton ref="startBtn" label="Start" primary={true} onClick={self.startGame}/>) : null}
+								{ self.state.matching ? (<CircularProgress mode="indeterminate" size={0.5} />) : null}
 							</div>
 						</div>
 					</div>
