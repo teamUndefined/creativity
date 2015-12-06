@@ -30,6 +30,10 @@
       color: #fff !important;
       padding-left: 12px;
       margin-right: -5px; }
+  .login-wrapper span {
+    color: #fff; }
+    .login-wrapper span .user-name {
+      font-weight: 600; }
 
 .message-container {
   height: 400px;
