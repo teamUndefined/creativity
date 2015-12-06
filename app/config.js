@@ -39,6 +39,9 @@ config.events = {
     },
     server_user_ready: {
         path: "lobby/controller.js"
+    },
+    server_match_lobby: {
+        path: "lobby/controller.js"
     }
 };
 

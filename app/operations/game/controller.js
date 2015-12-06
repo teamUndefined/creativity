@@ -26,6 +26,7 @@ exports.server_clear_canvas = function (args, socket, s) {
 
     // check if client that changed the canvas is in the room
     if (!sockets.clients[socket.id]) {
+        socket.emit("err");
         return;
     }
 

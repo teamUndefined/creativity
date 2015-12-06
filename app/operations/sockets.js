@@ -72,12 +72,21 @@ module.exports = function (core) {
         if (path && path.match(gameReg)) {
             if (!loginInfo) {
                 console.error(new Error ("No login info"));
+                socket.emit("err");
                 return;
             }
 
             if (!s.sockets[path]) {
                 console.error(new Error ("Room does not exist"));
+                socket.emit("err");
                 return;
+            }
+
+            // client must be in players
+            if (!s.sockets[path].players[loginInfo.facebook_uid]) {
+                console.error(new Error("player not in game"));
+                socket.emit("err");
+                return
             }
 
             // init client
@@ -90,7 +99,6 @@ module.exports = function (core) {
                     s.io.to(socket.id).emit(event, args);
                 }
             };
-
             s.sockets[path].emit = emitToRoom;
 
             // get all connected clients
@@ -112,12 +120,14 @@ module.exports = function (core) {
         } else if (path && path.match(lobbyReg)) {
             if (!loginInfo) {
                 console.error(new Error ("No login info"));
+                socket.emit("err");
                 return;
             }
 
             // check if lobby exists
             if (!s.sockets[path]) {
                 console.error(new Error ("Room does not exist"));
+                socket.emit("err");
                 return;
             }
 
@@ -156,10 +166,15 @@ module.exports = function (core) {
                 s.sockets[path].emit("new_client", socket.id, s.sockets[path].players[loginInfo.facebook_uid]);
 
                 // close room if 3 players
-                if (players.length >= 2) {
+                if (players.length >= 1) {
                     s.sockets[path].status = "full";
                 }
             } 
+
+            if (s.sockets[path].status === "full") {
+                socket.emit("err");
+                return;
+            }
         }
 
         // listen for events
