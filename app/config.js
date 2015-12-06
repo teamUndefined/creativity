@@ -67,6 +67,14 @@ config.operations = {
             access: {
                 roles: ["user"]
             }
+        },
+        createRoom: {
+            url: "/createLobby",
+            method: "post",
+            path: "lobby/controller.js",
+            access: {
+                roles: ["user"]
+            }
         }
     }
 };
