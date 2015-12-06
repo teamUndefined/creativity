@@ -6,7 +6,7 @@ import {
 	Paper
 } from 'material-ui';
 
-var Game = React.createClass({
+var Lobby = React.createClass({
 	render() {
 		return (
 			<div className="mdl-grid">
@@ -17,7 +17,7 @@ var Game = React.createClass({
 							<Chat socket={this.props.socket} />
 						</div>
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--12-col-phone">
-							<Canvas socket={this.props.socket} />
+							{/*<Canvas socket={this.state.socket} />*/}
 						</div>
 					</div>
 				</Paper>
@@ -26,4 +26,4 @@ var Game = React.createClass({
 	}
 });
 
-export default Game;
+export default Lobby;
