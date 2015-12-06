@@ -1,22 +1,25 @@
+.canvas-section {
+  position: relative;
+  padding-bottom: 75px; }
+
 .canvas-wrapper {
-  width: 100%;
-  position: relative; }
-  .canvas-wrapper .clear-button {
+  width: 100%; }
+  .canvas-wrapper .clear-btn-wrapper {
     position: absolute;
-    right: 15px;
+    right: 5px;
     bottom: 15px; }
   .canvas-wrapper canvas {
     display: inline-block;
     border: 1px solid #ccc; }
   .canvas-wrapper .tools .color-pill {
     display: inline-block;
-    margin: 5px 0 5px 10px; }
+    margin: 10px 0 5px 15px; }
     .canvas-wrapper .tools .color-pill:first-child {
       margin-right: 0; }
     .canvas-wrapper .tools .color-pill span {
       display: block;
-      width: 20px;
-      height: 20px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%; }
 
 .login-wrapper {
@@ -35,8 +38,50 @@
     .login-wrapper span .user-name {
       font-weight: 600; }
 
+.us-players,
+.them-players {
+  position: relative;
+  margin: 0 !important;
+  width: 50% !important;
+  padding: 5px 0 !important;
+  overflow: hidden; }
+  .us-players:after,
+  .them-players:after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: 60s linear; }
+  .us-players.active:after,
+  .them-players.active:after {
+    right: 100%; }
+  .us-players img,
+  .them-players img {
+    position: relative;
+    z-index: 10;
+    margin: 0 10px; }
+
+.us-players {
+  background-color: #2ecc71; }
+  .us-players:after {
+    background-color: #2ecc71; }
+  .us-players.active {
+    background-color: rgba(46, 204, 113, 0.5); }
+
+.them-players {
+  background-color: #c0392b; }
+  .them-players:after {
+    background-color: #c0392b; }
+  .them-players.active {
+    background-color: rgba(192, 57, 43, 0.5); }
+
+.chat-container {
+  width: 33%; }
+
 .message-container {
-  height: 400px;
+  height: 470px;
   margin-bottom: 0px;
   padding: 0; }
   .message-container > div {

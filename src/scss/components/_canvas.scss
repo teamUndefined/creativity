@@ -1,10 +1,15 @@
+.canvas-section {
+	position: relative;
+	padding-bottom: 75px;
+}
+
 .canvas-wrapper {
 	width: 100%;
-	position: relative;
+	// position: relative;
 
-	.clear-button {
+	.clear-btn-wrapper {
 		position: absolute;
-		right: 15px;
+		right: 5px;
 		bottom: 15px;
 	}
 
@@ -17,7 +22,7 @@
 
 		.color-pill {
 			display: inline-block;
-			margin: 5px 0 5px 10px;
+			margin: 10px 0 5px 15px;
 
 			&:first-child {
 				margin-right: 0;
@@ -25,8 +30,8 @@
 
 			span {
 				display: block;
-				width: 20px;
-				height: 20px;
+				width: 26px;
+				height: 26px;
 				border-radius: 50%;
 			}
 		}
@@ -56,5 +61,62 @@
 			font-weight: 600;
 		}
 	}
+}
 
+.us-players,
+.them-players {
+	position: relative;
+	margin: 0 !important;
+	width: 50% !important;
+	padding: 5px 0 !important;
+	overflow: hidden;
+
+	&:after {
+		content: ' ';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		transition: 60s linear;
+	}
+
+	&.active {
+
+		&:after {
+			right: 100%;
+		}
+	}
+
+	img {
+		position: relative;
+		z-index: 10;
+		margin: 0 10px;
+	}
+
+}
+
+.us-players {
+	background-color: rgba(46, 204, 113, 1);
+
+	&:after {
+		background-color: rgba(46, 204, 113, 1);
+
+	}
+
+	&.active {
+		background-color: rgba(46, 204, 113, 0.5);
+	}
+}
+
+.them-players {
+	background-color: rgba(192, 57, 43, 1);
+
+	&:after {
+		background-color: rgba(192, 57, 43, 1);
+	}
+
+	&.active {
+		background-color: rgba(192, 57, 43, 0.5);
+	}
 }
