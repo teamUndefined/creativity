@@ -174,8 +174,8 @@ module.exports = function (core) {
                 s.sockets[path].emit("total_clients", null, players);
                 s.sockets[path].emit("new_client", socket.id, s.sockets[path].players[loginInfo.facebook_uid]);
 
-                // close room if 3 players
-                if (players.length >= 1) {
+                // room
+                if (players.length >= 10) {
                     s.sockets[path].status = "full";
                 }
             } else if (s.sockets[path].status === "full") {

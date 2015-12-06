@@ -41,7 +41,7 @@ exports.server_user_ready = function (args, socket, s) {
 
     // check if all are ready
     var allReady = true
-    if (sockets.status === "full") {
+    if (Object.keys(sockets.players).length >= 1 && Object.keys(sockets.players).length <= 10) {
         Object.keys(sockets.players).forEach(function (c) {
             var player = sockets.players[c];
             if (!player.ready) {
@@ -72,8 +72,8 @@ exports.server_match_lobby = function (args, socket, s) {
     }
 
     // conditions
-    // the lobby must be full
-    if (room.status !== "full" || Object.keys(room.players).length !== 1 || !room.ready) {
+    // the lobby must ha between 1 and 10 players
+    if (Object.keys(room.players).length < 1 || Object.keys(room.players).length > 10) {
         socket.emit("err");
         return;
     }
