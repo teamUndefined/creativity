@@ -4,6 +4,7 @@ exports.server_update_canvas = function (args, socket, s) {
     var path = socket.request.headers.referer;
     path = path.slice(path.indexOf(host) + host.length);
     var sockets = s.sockets[path];
+    sockets.clients = sockets.clients || {};
 
     // check if client that changed the canvas is in the room
     if (!sockets.clients[socket.id]) {
