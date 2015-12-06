@@ -29,7 +29,7 @@ config.events = {
         path: "chat/controller.js"
     },
     disconnect: {
-        path: "chat/controller.js"
+        path: "disconnect/controller.js"
     },
     server_update_canvas: {
         path: "game/controller.js"
