@@ -10,7 +10,7 @@ import {
 var Game = React.createClass({
 	componentDidMount() {
 		this.props.socket.on('total_clients', function(clients) {
-			UserStore.isLoggedIn();
+			
 		});
 	},
 	render() {

@@ -42,7 +42,7 @@ exports.server_user_ready = function (args, socket, s) {
     // check if all are ready
     var allReady = true
     if (sockets.status === "full") {
-        Object().keys(sockets.players).forEach(function (c) {
+        Object.keys(sockets.players).forEach(function (c) {
             var player = sockets.players[c];
             if (!player.ready) {
                 allReady = false;
