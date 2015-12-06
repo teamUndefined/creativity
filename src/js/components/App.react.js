@@ -7,7 +7,13 @@ import {
 } from 'material-ui';
 
 var App = React.createClass({
+	getInitialState() {
+		return {
+			socket: io()
+		};
+	},
 	render() {
+		var self = this;
 		return (
 			<div className="app-container">
 				<div className="login-wrapper">
@@ -18,7 +24,9 @@ var App = React.createClass({
 					</a>
 				</div>
 				<img src="/res/logo.svg" className="logo" />
-				{ this.props.children }
+				{ self.props.children && React.cloneElement(self.props.children, {
+					socket: self.state.socket
+				})}
 			</div>
 		);
 	}
