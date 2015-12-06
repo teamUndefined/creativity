@@ -41,7 +41,8 @@ function handleOperation(req, res, config, operation) {
         headers: req.headers,
         req: req,
         url: req.url,
-        res: res
+        res: res,
+        s: s
     }
 
     // handle POST and GET request data

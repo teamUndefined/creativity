@@ -3,9 +3,17 @@ var ObjectId = mongo.ObjectID;
 
 exports.createLobby = function (source) {
 
-	// generate lobby id
-	var lobbyId = ObjectId();
+    // generate lobby id
+    var lobbyId = ObjectId();
 
-	source.res.setHeader("Location", "/lobby/" + lobbyId);
-	source.res.status(302).end();
+    source.s.sockets["/lobby/" + lobbyId] = {
+        path: "/lobby/" + lobbyId,
+        status: "waiting",
+        type: "lobby",
+        players: {},
+        clients: {}
+    };
+
+    source.res.setHeader("Location", "/lobby/" + lobbyId);
+    source.res.status(302).end();
 };
