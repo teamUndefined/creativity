@@ -11,7 +11,6 @@ function addToCart(product) {
 
 class UserStore extends events.EventEmitter {
 	isLoggedIn() {
-		
 		return total;
 	}
 	getLoggedInUser() {

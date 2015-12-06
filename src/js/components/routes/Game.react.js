@@ -1,12 +1,20 @@
 import React from 'react';
 import Canvas from './Canvas.react.js';
 import Chat from '../partials/Chat.react';
+import UserStore from '../../stores/UserStore';
 
 import {
 	Paper
 } from 'material-ui';
 
 var Game = React.createClass({
+	componentDidMount() {
+		this.props.socket.on('total_clients', function(clients) {
+			// get scketch and redraw
+			console.log('CLIENTS', clients);
+			UserStore.isLoggedIn();
+		});
+	},
 	render() {
 		return (
 			<div className="mdl-grid">
