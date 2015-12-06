@@ -1,9 +1,9 @@
 import events from 'events';
 import Dispatcher from '../dispatcher.js';
 import ActionConsts from '../constants/UserConstants';
-import cookieParser from 'cookieparser';
+import cookieParser from 'cookie';
 
-var cartContent = {};
+var _loginInfo = {};
 var visibility = false;
 
 function addToCart(product) {
@@ -12,9 +12,30 @@ function addToCart(product) {
 
 class UserStore extends events.EventEmitter {
 	isLoggedIn() {
-		var cookie = cookieParser.JSONCookie('login');
+		console.log(cookieParser);
+		var cookie,
+			loginInfo;
+		if (document.cookie) {
+          cookie = cookieParser.parse(document.cookie);
+      }
 
-		return true;
+		if (cookie && cookie.login) {
+          if (cookie.login.indexOf("{") !== -1 && cookie.login.indexOf("}") !== -1) {
+              var loginString = cookie.login.slice(cookie.login.indexOf("{"), cookie.login.indexOf("}") + 1);
+
+              try {
+                  loginInfo = JSON.parse(loginString);
+              } catch (e) {
+                  console.error(e, "faild to parse login cookie");
+              }
+          }
+      }
+
+      if (loginInfo) {
+			return true;
+      }
+
+      return false;
 	}
 	getLoggedInUser() {
 		console.log(cookieParser);
