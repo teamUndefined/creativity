@@ -40,7 +40,8 @@ exports.facebookCallback = function (source) {
         var login = {
             role: role,
             _id: user._id,
-            facebook_uid: user.facebook_uid
+            facebook_uid: user.facebook_uid,
+            name: user.name
         };
 
         // set session

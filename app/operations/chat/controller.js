@@ -6,7 +6,7 @@ exports.server_message = function (args, socket, s) {
     var sockets = s.sockets[path];
 
     sockets.emit("new_message", socket.id, {
-        emitter: sockets.clients[socket.id].username,
+        emitter: sockets.clients[socket.id]
         msg: args
     });
 };
@@ -45,13 +45,13 @@ exports.disconnect = function (args, socket, s) {
 
         if (s.sockets[path].clients && s.sockets[path].clients[socket.id]) {
 
-            s.sockets[path].emit("client_left", socket.id, s.sockets[path].clients[socket.id].username);
+            s.sockets[path].emit("client_left", socket.id, s.sockets[path].clients[socket.id]);
 
             delete s.sockets[path].clients[socket.id];
 
             var arr = [];
             Object.keys(s.sockets[path].clients).forEach(function (item) {
-                arr.push(s.sockets[path].clients[item].username);
+                arr.push(s.sockets[path].clients[item]);
             });
             s.sockets[path].emit("total_clients", null, arr);
 
