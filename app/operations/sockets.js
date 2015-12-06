@@ -146,8 +146,8 @@ module.exports = function (core) {
                 Object.keys(s.sockets[path].players).forEach(function (c) {
                     var player = s.sockets[path].players[c];
                     players.push({
-                        name: loginInfo.name,
-                        facebook_uid: loginInfo.facebook_uid
+                        name: player.name,
+                        facebook_uid: player.facebook_uid
                     });
                 });
 
