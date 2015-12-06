@@ -47,6 +47,15 @@ module.exports = function (core) {
         var gameReg = new RegExp("^/game/[^/]+/*$");
         var lobbyReg = new RegExp("^/lobby/[^/]+/*$");
 
+        // listen for events
+        for (var event in config.events) {
+            (function (event) {
+                socket.on(event, function (args) {
+                    handleEvent(event, args, config.events[event], socket);
+                });
+            })(event);
+        }
+
         // get cookie
         cookie = socket.handshake.headers.cookie;
 
@@ -70,6 +79,7 @@ module.exports = function (core) {
 
         // create game
         if (path && path.match(gameReg)) {
+            console.log(s.sockets[gameReg]);
             if (!loginInfo) {
                 console.error(new Error ("No login info"));
                 socket.emit("err");
@@ -169,21 +179,10 @@ module.exports = function (core) {
                 if (players.length >= 1) {
                     s.sockets[path].status = "full";
                 }
-            } 
-
-            if (s.sockets[path].status === "full") {
+            } else if (s.sockets[path].status === "full") {
                 socket.emit("err");
                 return;
             }
-        }
-
-        // listen for events
-        for (var event in config.events) {
-            (function (event) {
-                socket.on(event, function (args) {
-                    handleEvent(event, args, config.events[event], socket);
-                });
-            })(event);
         }
     });
 };

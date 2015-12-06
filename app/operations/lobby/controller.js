@@ -103,7 +103,7 @@ exports.server_match_lobby = function (args, socket, s) {
         // merge players
         game.players = {};
         Object.keys(room.players).forEach(function (c) {
-            game.players[c] = players.clients[c];
+            game.players[c] = room.clients[c];
         });
         Object.keys(match.players).forEach(function (c) {
             game.players[c] = match.players[c];

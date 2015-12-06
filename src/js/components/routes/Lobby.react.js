@@ -21,6 +21,9 @@ var Lobby = React.createClass({
 	},
 	componentDidMount() {
 		var self = this;
+		this.props.socket.on('err', function() {
+			window.location = "/";
+		});
 		self.props.socket.on("total_clients", function (players) {
 			self.setState({
 				players: players

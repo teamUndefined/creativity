@@ -48,7 +48,6 @@ exports.server_stopped_typing = function (args, socket, s) {
 
 exports.disconnect = function (args, socket, s) {
 
-    console.log(args);
     // get room path
     var host = socket.request.headers.host;
     var path = socket.request.headers.referer;
