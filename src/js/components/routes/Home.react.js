@@ -2,10 +2,33 @@ import React from 'react';
 
 import {
 	Paper,
-	RaisedButton
+	RaisedButton,
+	CircularProgress
 } from 'material-ui';
 
 var Home = React.createClass({
+	getInitialState() {
+		return {
+			search: false
+		}
+	},
+	componentDidMount() {
+
+		this.props.socket.on("lobby_found", function(lobbyPath) {
+			window.location = lobbyPath;
+		});
+
+		this.props.socket.on("lobby_not_found", function() {
+
+		});
+
+	},
+	findRoom() {
+		this.props.socket.emit("server_join_lobby");
+		this.setState({
+			search: true
+		});
+	},
 	render() {
 		return (
 			<div className="mdl-grid home">
@@ -18,7 +41,8 @@ var Home = React.createClass({
 							</a>
 						</div>
 						<div className="mdl-cell mdl-cell--6-col mdl-cell--12-col-phone p-xl text-center">
-							<RaisedButton label="Join Room" secondary={true} />
+							<RaisedButton label="Join Room" secondary={true} onClick={this.findRoom} />
+							{ this.state.search ? (<CircularProgress mode="indeterminate" size={0.5} />) : null}
 						</div>
 					</div>
 				</Paper>

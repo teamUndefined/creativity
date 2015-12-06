@@ -7,7 +7,8 @@ import {
 	TextField,
 	Avatar,
 	RaisedButton,
-	CircularProgress
+	CircularProgress,
+	Checkbox
 } from 'material-ui';
 
 var Lobby = React.createClass({
@@ -37,6 +38,9 @@ var Lobby = React.createClass({
 		self.props.socket.on("match_made", function (gid) {
 			window.location = "/game/" + gid;
 		});
+	},
+	enableStrangers() {
+		this.props.socket.emit("server_strangers_toggle");
 	},
 	setReady() {
 		this.setState({
@@ -75,6 +79,7 @@ var Lobby = React.createClass({
 								}) }
 							</div>
 							<div className="pt-m">
+								<Checkbox name="public" value="public" label="Alow strangers" onClick={self.enableStrangers}/>
 								{ !self.state.isReady ? (<RaisedButton ref="readyBtn" label="Ready" secondary={true} onClick={self.setReady}/>) : null}
 								{ self.state.allReady ? (<RaisedButton ref="startBtn" label="Start" primary={true} onClick={self.startGame}/>) : null}
 								{ self.state.matching ? (<CircularProgress mode="indeterminate" size={0.5} />) : null}
