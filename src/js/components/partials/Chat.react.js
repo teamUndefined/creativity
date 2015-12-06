@@ -68,15 +68,16 @@ var Chat = React.createClass({
 			})
 		});
 	},
-	sendMessage(textarea) {
+	sendMessage() {
+		var textarea = this.refs.chatTextarea;
 		// get message from textarea
-		var message = textarea.value;
+		var message = textarea.getValue();
 		// if there's no message don't do shit
 		if (!message) return;
 
 		var self = this;
 		// empty textarea
-		textarea.value = "";
+		textarea.setValue("");
 		// emit message to server(others)
 		self.props.socket.emit("server_stopped_typing");
 		self.props.socket.emit("server_message", message);
@@ -91,7 +92,7 @@ var Chat = React.createClass({
 		var self = this;
 		if (e.keyCode === 13) {
 			e.preventDefault();
-			self.sendMessage(e.target);
+			self.sendMessage();
 		} else {
 			if (self.state.isTyping === false) {
 				self.props.socket.emit("server_typing");
@@ -116,7 +117,7 @@ var Chat = React.createClass({
 				</div>
 				{ self.state.isTyping ? <i className="info isTyping">Someone is typing...</i> : null }
 				<div className="pl-s pr-s">
-					<TextField className="message-textarea" hintText="Type to chat" multiLine={true} maxRows={3} onKeyDown={self.isTyping} fullWidth={true} />
+					<TextField ref="chatTextarea" className="message-textarea" hintText="Type to chat" multiLine={true} maxRows={3} onKeyDown={self.isTyping} fullWidth={true} />
 				</div>
 			</div>
 		);

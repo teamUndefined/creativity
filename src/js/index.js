@@ -11,6 +11,7 @@ import Lobby from './components/routes/Lobby.react';
 ReactDOM.render(
 	<Router history={createBrowserHistory()}>
 		<Route path="/" component={App}>
+			<IndexRoute component={Home} />
 			<Route path="game/:_gid" component={Game} />
 			<Route path="lobby/:_gid" component={Lobby} />
 		</Route>
