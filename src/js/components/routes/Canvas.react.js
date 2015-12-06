@@ -60,9 +60,11 @@ var Canvas = React.createClass({
 					<a href="#canvas" className="color-pill" data-color="#c0392b" title="Red"><span style={{backgroundColor: "#c0392b"}}></span></a>
 					<a href="#canvas" className="color-pill" data-color="#f1c40f" title="Yellow"><span style={{backgroundColor: "#f1c40f"}}></span></a>
 					<a href="#canvas" className="color-pill" data-color="#ffffff" title="White"><span style={{backgroundColor: "#ffffff", border: "1px solid #aaa"}}></span></a>
-					<FloatingActionButton onClick={this.clearCanvas} mini={true}>
-						<i className="fa fa-refresh"></i>
-					</FloatingActionButton>
+					<div className="clear-btn-wrapper">
+						<FloatingActionButton onClick={this.clearCanvas} mini={true}>
+							<i className="fa fa-refresh"></i>
+						</FloatingActionButton>
+					</div>
 				</div>
 			</div>
 		)
