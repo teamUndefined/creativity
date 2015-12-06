@@ -156,7 +156,7 @@ module.exports = function (core) {
                 s.sockets[path].emit("new_client", socket.id, s.sockets[path].players[loginInfo.facebook_uid]);
 
                 // close room if 3 players
-                if (players.length >=3) {
+                if (players.length >= 2) {
                     s.sockets[path].status = "full";
                 }
             } 

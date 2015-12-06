@@ -36,6 +36,9 @@ config.events = {
     },
     server_clear_canvas: {
         path: "game/controller.js"  
+    },
+    server_user_ready: {
+        path: "lobby/controller.js"
     }
 };
 
