@@ -23,7 +23,7 @@ var Chat = React.createClass({
 			self.setState({
 				newMessage: {
 					type: "info",
-					message: (client + " connected.")
+					message: (client.name + " connected.")
 				}
 			});
 		});
@@ -32,7 +32,7 @@ var Chat = React.createClass({
 		    self.setState({
 				newMessage: {
 					type: "info",
-					message: (client + " left.")
+					message: (client.name + " left.")
 				}
 			});
 		});

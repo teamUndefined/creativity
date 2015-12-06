@@ -6,7 +6,7 @@ exports.server_message = function (args, socket, s) {
     var sockets = s.sockets[path];
 
     sockets.emit("new_message", socket.id, {
-        emitter: sockets.clients[socket.id]
+        emitter: sockets.clients[socket.id],
         msg: args
     });
 };

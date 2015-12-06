@@ -11,6 +11,7 @@ ReactDOM.render(
 	<Router history={createBrowserHistory()}>
 		<Route path="/" component={App}>
 			<Route path="game/:_gid" component={Game} />
+			<Route path="lobby/:_gid" component={Game} />
 		</Route>
 	</Router>,
 	document.getElementById('mainContainer')

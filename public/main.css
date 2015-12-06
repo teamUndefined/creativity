@@ -56,10 +56,17 @@
     float: left;
     z-index: 1000;
     position: absolute;
-    bottom: 5px;
+    bottom: 25px;
     left: 0px;
     background-size: cover;
     background-position: center; }
+  .message-container .emitter-name {
+    float: none;
+    display: block;
+    font-size: 11px;
+    position: relative;
+    top: -4px;
+    color: #E5E5EA; }
   .message-container .from-me,
   .message-container .from-them {
     max-width: 255px;

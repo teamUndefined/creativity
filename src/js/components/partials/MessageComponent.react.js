@@ -44,11 +44,12 @@ var MessageComponent = React.createClass({
 			} else if (item.type === "message") {
 				return (
 					<div key={index} className="messageWrapper">
-						<div className="emitter" style={{backgroundImage: "url(/res/" + item.emitter + ".jpg)"}}></div>
+						<div className="emitter" style={{backgroundImage: "url(https://graph.facebook.com/" + item.emitter.facebook_uid + "/picture)"}}></div>
 						<div className="from-them">
 							<p>{item.message}</p>
 						</div>
 						<div className="clearfix"></div>
+						<span className="emitter-name">{item.emitter.name}</span>
 					</div>
 				);
 			} else if (item.type === "myMessage") {
