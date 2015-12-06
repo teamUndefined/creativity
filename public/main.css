@@ -1,7 +1,7 @@
 .canvas-wrapper {
   width: 100%;
   position: relative; }
-  .canvas-wrapper .clear-button {
+  .canvas-wrapper .clear-btn-wrapper {
     position: absolute;
     right: 15px;
     bottom: 15px; }
