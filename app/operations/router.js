@@ -16,7 +16,7 @@ function handleOperation(req, res, config, operation) {
 
     // check if user has permission to run this operation
     if (config.access && config.access.roles) {
-        var userRole = (req.session.login) ? req.session.login.role || "visitator" : "visitator";
+        var userRole = (req.signedCookies.login) ? req.signedCookies.login.role || "visitator" : "visitator";
         if (config.access.roles.indexOf(userRole) === -1) {
             // TODO use some kind of error template
             return res.status(403).send('access denied');

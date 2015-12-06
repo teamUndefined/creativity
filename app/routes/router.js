@@ -15,7 +15,7 @@ function renderView (req, res, config, view) {
 
     // check if user has access to this view
     if (config.access && config.access.roles) {
-        var userRole = (req.session.login) ? req.session.login.role || "visitator" : "visitator";
+        var userRole = (req.signedCookies.login) ? req.signedCookies.login.role || "visitator" : "visitator";
 
         if (config.access.roles.indexOf(userRole) === -1) {
 
