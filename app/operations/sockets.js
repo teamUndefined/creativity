@@ -41,10 +41,11 @@ module.exports = function (core) {
         var path = socket.request.headers.referer;
 
         path = path.slice(path.indexOf(host) + host.length);
-        var reg = new RegExp("^/game/[^/]+/*$");
+        var gameReg = new RegExp("^/game/[^/]+/*$");
+        var lobbyReg = new RegExp("^/lobby/[^/]+/*$");
 
         // create room or join room
-        if (path && path.match(reg)) {
+        if (path && (path.match(gameReg) || path.match(lobbyReg))) {
             
             // create room if it does not exist
             if (!s.sockets[path]) {
@@ -91,7 +92,12 @@ module.exports = function (core) {
             // get all connected clients
             clients = [];
             Object.keys(s.sockets[path].clients).forEach(function (c) {
-                clients.push(s.sockets[path].clients[c]);
+                var client = s.sockets[path].clients[c];
+                clients.push({
+                    id: client.id,
+                    name: client.name,
+                    facebook_uid: client.facebook_uid
+                });
             });
 
             // emit events
